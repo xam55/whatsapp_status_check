@@ -189,8 +189,10 @@ async function clearAuthSession() {
   await fs.mkdir(AUTH_DIR, { recursive: true });
   const entries = await fs.readdir(AUTH_DIR);
 
+  const sessionEntries = entries.filter((entry) => entry !== '.gitkeep');
+
   await Promise.all(
-    entries.map((entry) => fs.rm(path.join(AUTH_DIR, entry), {
+    sessionEntries.map((entry) => fs.rm(path.join(AUTH_DIR, entry), {
       recursive: true,
       force: true
     }))
