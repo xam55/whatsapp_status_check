@@ -186,7 +186,16 @@ async function closeSocket() {
 }
 
 async function clearAuthSession() {
-  await fs.rm(AUTH_DIR, { recursive: true, force: true });
+  await fs.mkdir(AUTH_DIR, { recursive: true });
+  const entries = await fs.readdir(AUTH_DIR);
+
+  await Promise.all(
+    entries.map((entry) => fs.rm(path.join(AUTH_DIR, entry), {
+      recursive: true,
+      force: true
+    }))
+  );
+
   clearQr();
   emitLog('warn', 'auth_session cleared.');
 }
