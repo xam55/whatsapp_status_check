@@ -69,7 +69,7 @@ async function handleStatusMessage(sock, message) {
   if (LOG_STATUS_DEBUG || !targetMatched) defer(() => {
     emitDebug({
       level: targetMatched ? 'info' : 'warn',
-      message: `Status detected from ${senderJid}${targetMatched ? '' : ' - skipped, not in targets. Add this exact JID or remove all targets to watch all.'}`
+      message: `Status detected from ${senderJid}${targetMatched ? '' : ' - skipped: sender is not in the target list. Add this exact JID, or set WATCH_ALL=true to view all statuses.'}`
     });
   });
 
