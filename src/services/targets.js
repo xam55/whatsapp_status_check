@@ -52,7 +52,8 @@ function initializeTargets() {
   initialized = true;
 
   if (targetMap.size === 0) {
-    console.log(`[${new Date().toISOString()}] No targets configured. Watching all contacts.`);
+    const mode = isWatchingAll() ? 'Watching all contacts.' : 'Tracking is disabled.';
+    console.log(`[${new Date().toISOString()}] No targets configured. ${mode}`);
   } else {
     console.log(`[${new Date().toISOString()}] Loaded ${targetMap.size} target contact(s).`);
   }
