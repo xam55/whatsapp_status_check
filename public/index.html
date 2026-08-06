@@ -905,8 +905,9 @@
       const list = payload.list || [];
 
       if (list.length === 0) {
-        targetsEl.innerHTML =
-          '<div class="empty panel-empty">No contacts added. All incoming statuses are being watched.</div>';
+        targetsEl.innerHTML = payload.watchingAll
+          ? '<div class="empty panel-empty">Watching all incoming statuses.</div>'
+          : '<div class="empty panel-empty">No contacts are being tracked.</div>';
         return;
       }
 

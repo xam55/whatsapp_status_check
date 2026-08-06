@@ -28,7 +28,7 @@ function serializeTargets() {
   const list = targets.getTargets();
   return {
     list,
-    watchingAll: list.length === 0 || String(process.env.WATCH_ALL || 'false').toLowerCase() === 'true'
+    watchingAll: targets.isWatchingAll()
   };
 }
 

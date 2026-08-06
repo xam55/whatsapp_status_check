@@ -58,13 +58,13 @@ function initializeTargets() {
   }
 }
 
-function watchAll() {
-  return String(process.env.WATCH_ALL || 'false').toLowerCase() === 'true' || targetMap.size === 0;
+function isWatchingAll() {
+  return String(process.env.WATCH_ALL || 'false').toLowerCase() === 'true';
 }
 
 function isTarget(jid) {
   if (!jid) return false;
-  if (watchAll()) return true;
+  if (isWatchingAll()) return true;
   return targetMap.has(jid);
 }
 
@@ -106,6 +106,7 @@ module.exports = {
   getDisplayName,
   getTargets,
   initializeTargets,
+  isWatchingAll,
   isTarget,
   normalizeNumber,
   normalizeTarget,
